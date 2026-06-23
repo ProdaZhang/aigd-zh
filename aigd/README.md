@@ -75,7 +75,7 @@ aigd-ui-capture/ 工具:界面截图 → 界面 DSL
    - **必须 7 个都拷且平级**:子 skill 正文用 `../aigd/references/` 取方法论,缺 `aigd/` 或层级错就断链。
    - **不要拷** skills 目录下与 aigd 无关的其它 skill(它们是各自项目的东西);`.gitignore` 拷不拷都行。
    - 装好后该目录下应**正好**是这 7 个 `aigd`/`aigd-*` 文件夹。
-   - **换 harness**:Codex/Gemini/Copilot 装到各自的 skills 目录,或一处 `~/.agents/skills/`(这三家共享)即可;`SKILL.md` 格式四家通用。装哪、怎么唤起、工具名对应见 [`references/harness适配.md`](references/harness适配.md)。
+   - **换 harness**:ZCode 装 `~/.zcode/skills/`;Gemini `~/.gemini/skills/`(或 `gemini skills install <repo>` 一键装);Codex `~/.codex/skills/`(或自带 skill-installer)。`SKILL.md` 格式在这几家通用且已实测;**Copilot 1.0.63 无 skills 机制、需适配**。装哪、怎么唤起、工具名对应见 [`references/harness适配.md`](references/harness适配.md)。
 2. **跑校验器要 Python**(多数脚本纯标准库;`ui_palette`/`ui_slice` 需 Pillow,`gherkin_to_checklist` 写 xlsx 需 openpyxl,见 `references/scripts/requirements.txt`)。
 3. **新项目**:调 `aigd`(不知道在哪一步就让它路由)或直接 `aigd-concept` 立意建脊柱 → `aigd-system` 逐系统设计 → 定稿 `aigd-handoff`。
 4. **先感受**:进 [`examples/potion-crafting/`](examples/potion-crafting/),照其 README 把 3 个校验器跑一遍,看"6 件套 + 机检门控"实际长什么样。

@@ -21,11 +21,12 @@ aigd/  aigd-concept/  aigd-system/  aigd-iterate/  aigd-handoff/  aigd-sync/  ai
 | harness | 装到 |
 |---------|------|
 | Claude Code | `.claude/skills/` |
-| Codex | `~/.codex/skills/` 或 `~/.agents/skills/` |
-| Gemini CLI | `~/.gemini/skills/` 或 `~/.agents/skills/` |
-| Copilot CLI | `~/.agents/skills/`(与 Codex/Gemini 共享,一处装三家通用) |
+| ZCode（Claude 系） | `~/.zcode/skills/` |
+| Gemini CLI | `~/.gemini/skills/`(或 `gemini skills install https://github.com/<owner>/<repo>` 一键从仓库装) |
+| Codex | `~/.codex/skills/<名>`(或自带 skill-installer 从仓库装;装完重启) |
+| Copilot CLI 1.0.63 | ❌ 无 skills 机制,走 `AGENTS.md`/MCP/plugin,需适配 |
 
-包结构(`SKILL.md` + `name`/`description` frontmatter)四家通用;装哪/怎么唤起/工具名对应见 [`aigd/references/harness适配.md`](aigd/references/harness适配.md)。跑校验器要 Python(多数纯标准库;部分要 `openpyxl`/`Pillow`,见 `aigd/references/scripts/requirements.txt`)。
+包结构(`SKILL.md` + `name`/`description` frontmatter)在 **Claude Code / ZCode / Gemini / Codex** 通用(均已实测);**Copilot 1.0.63 不支持**。装哪/怎么唤起/工具名对应见 [`aigd/references/harness适配.md`](aigd/references/harness适配.md)。跑校验器要 Python(多数纯标准库;部分要 `openpyxl`/`Pillow`,见 `aigd/references/scripts/requirements.txt`)。
 
 ## 上手
 
