@@ -45,9 +45,17 @@ aigd/  aigd-concept/  aigd-system/  aigd-iterate/  aigd-handoff/  aigd-sync/  ai
 - **不替你拍数值/口径**:未定的一律标 `[待确认]` 交人,AI 不脑补。
 - **"另一个 AI 能照交接包开发"的证据范围**:在**同模型族**(Claude)真系统上做过消费端双实现交叉验证、跑通;**跨厂模型(GPT/Gemini)未验**。它是强证据、不是全称证明。
 
-## 跨 harness 现状（诚实声明）
+## 跨 harness 现状（实测，2026-06-23）
 
-包结构四家通用、适配文档(`harness适配.md`)已写齐;但目前只在 **Claude Code** 上实测跑通。**Codex / Gemini CLI / Copilot CLI 是按文档适配、尚未实测安装跑通**——欢迎在这些环境试装并反馈。
+| harness | 装入 | 发现 | 路由 | 执行 |
+|---------|------|------|------|------|
+| Claude Code（原生·真项目） | ✅ | ✅ | ✅ | ✅ |
+| ZCode 3.1.3（Claude 系） | ✅ | ✅ | ✅ | ✅ |
+| Gemini CLI 0.47（Google·跨厂） | ✅ | ✅ | ✅ | ✅ |
+| Codex 0.140（OpenAI·跨厂） | ✅ | ✅ | ✅ | ✅ |
+| Copilot CLI 1.0.63（GitHub） | ❌ 无 skills 机制 | — | — | — |
+
+四个 harness 实测跑通(发现 + 路由 + 执行),**含 Gemini、Codex 两个跨厂**;Gemini 用 `gemini skills install <repo>`、Codex 用自带 skill-installer 都能从本仓库一键装。**Copilot CLI 1.0.63 经实测不支持 SKILL.md skills 机制**(走 AGENTS.md/MCP/plugin),aigd 需适配才能用。装哪/怎么唤起见 [`aigd/references/harness适配.md`](aigd/references/harness适配.md)。
 
 ## 许可
 

@@ -99,8 +99,8 @@ aigd-ui-capture/ 工具:界面截图 → 界面 DSL
 
 ## 可移植 & 状态
 
-- **跨 harness**:包结构(`SKILL.md` + `name`/`description` frontmatter)在 **Claude Code / Codex / Gemini CLI / Copilot CLI** 四家通用;不同的只是装哪个目录、怎么唤起、读写工具名——见 [`references/harness适配.md`](references/harness适配.md)。方法论本身不依赖任何 harness、不依赖其指令文件(`CLAUDE.md`/`AGENTS.md`/`GEMINI.md`)。校验器脚本是 argv 驱动命令行,只要有 Python 哪家都一样用。
-  > **诚实声明**:目前只在 **Claude Code** 实测跑通;Codex/Gemini/Copilot 是**按文档适配、尚未实测安装**,欢迎试装反馈。
+- **跨 harness**:包结构(`SKILL.md` + `name`/`description` frontmatter)在 **Claude Code / ZCode / Gemini CLI / Codex** 通用;不同的只是装哪个目录、怎么唤起、读写工具名——见 [`references/harness适配.md`](references/harness适配.md)。方法论本身不依赖任何 harness、不依赖其指令文件(`CLAUDE.md`/`AGENTS.md`/`GEMINI.md`)。校验器脚本是 argv 驱动命令行,只要有 Python 哪家都一样用。
+  > **实测状态(2026-06-23)**:已在 **Claude Code(原生·真项目)、ZCode 3.1.3(Claude 系)、Gemini CLI 0.47(Google)、Codex 0.140(OpenAI)** 四个 harness 实测跑通——发现 + 路由 + 执行全过,**含 Gemini、Codex 两个跨厂**;Gemini/Codex 还能用各自原生 installer 从本仓库一键装。**Copilot CLI 1.0.63 经实测无 SKILL.md skills 机制**(走 AGENTS.md/MCP/plugin),aigd 需适配。详见 [`references/harness适配.md`](references/harness适配.md)。
 - **适用边界**:管设计交接的结构与一致性,**不管数值平衡**;html 原型验信息架构/流程,**验不了手感/时序/网络**(实时战斗类只验信息架构);UI 密集系统适配最好。详见仓库根 `README.md`「适用边界」。
 - **项目专属**(立意/约定/系统清单/号段)全部住**脊柱**(`项目档案`/`manifest`),不进本包——换项目换 AI,读脊柱即可接手。
 - `patterns/` 是会长大的**启动包**(目前:5 种核心循环 / 战斗单位养成范式 / 10 条数值陷阱)。

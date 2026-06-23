@@ -1,7 +1,26 @@
 # 跨 harness 适配（Claude Code / Codex / Gemini CLI / Copilot CLI）
 
-> AIGD 的**包结构本身是跨 harness 通用的**:四家都用"一个子目录 + `SKILL.md`(`name`/`description` frontmatter)"这套 skill 格式,子 skill 用 `../aigd/references/` 取方法论的相对路径在哪家都成立(只要 7 个文件夹平级)。
+> AIGD 的**包结构跨 harness 通用**:Claude Code / ZCode / Gemini CLI / Codex 都用"一个子目录 + `SKILL.md`(`name`/`description` frontmatter)"这套 skill 格式,子 skill 用 `../aigd/references/` 取方法论的相对路径在哪家都成立(只要 7 个文件夹平级)。**Copilot CLI(1.0.63)经实测无此 skills 机制**,需另行适配——详见下「实测状态」。
 > 不同的只有三件:**装哪个目录、怎么唤起、读写/跑命令用哪个工具名**。本页一次说清。方法论正文一律"说动作"(读/写/跑/搜),工具名按本表对应到你的 harness。
+
+---
+
+## 0. 实测状态（2026-06-23）
+
+下表是**实际装跑过的结果**,不是纸面推断:
+
+| harness | 版本 | 装入 | 发现 | 路由 | 执行 |
+|---------|------|------|------|------|------|
+| Claude Code（原生·真项目） | — | ✅ | ✅ | ✅ | ✅ |
+| ZCode（Claude 系桌面端） | 3.1.3 | ✅ | ✅ | ✅ | ✅ |
+| Gemini CLI（Google·跨厂） | 0.47 | ✅ | ✅ | ✅ | ✅ |
+| Codex（OpenAI·跨厂） | 0.140 | ✅ | ✅ | ✅ | ✅ |
+| Copilot CLI（GitHub） | 1.0.63 | ❌ 无 skills 机制 | — | — | — |
+
+- **Gemini**:`gemini skills install https://github.com/<owner>/<repo>`(不带 `--path` 会发现仓库内全部 skill 一次装齐),装到 `~/.gemini/skills/`。免费 OAuth 个人档已被 Google 下线(提示迁移 Antigravity)→ 用 AI Studio 的 `GEMINI_API_KEY`。
+- **Codex**:用户 skill 放 `$CODEX_HOME/skills/<名>`(默认 `~/.codex/skills/`),与内置 `.system` 平级;**装完需重启 Codex**。也可让其自带 skill-installer 从 GitHub 装:`install-skill-from-github.py --repo <owner>/<repo> --path aigd aigd-concept …`(一条多 `--path` 装多个)。
+- **Copilot CLI 1.0.63**:命令只有 `login/mcp/plugin/init/config…`,无 skills 概念;aigd 这套 SKILL.md 装不进,要用得改走 `AGENTS.md`/MCP/plugin 适配。
+- 结论:SKILL.md skill 机制在 **Claude Code / ZCode / Gemini / Codex** 通用且实测跑通(含 Gemini、Codex 两个跨厂);**Copilot 当前不兼容**。
 
 ---
 
@@ -12,9 +31,9 @@
 | **Claude Code** | `.claude/skills/`(项目) 或 `~/.claude/skills/`(用户) | `Skill` 工具 | `CLAUDE.md` |
 | **Codex** | `~/.codex/skills/` **或** `~/.agents/skills/` | 原生加载,直接照 SKILL.md 走(无显式唤起工具) | `AGENTS.md` |
 | **Gemini CLI** | `~/.gemini/skills/` **或** `~/.agents/skills/` | `activate_skill` 工具 | `GEMINI.md` |
-| **Copilot CLI** | `~/.agents/skills/` | `skill` 工具 | — |
+| **Copilot CLI** | —(1.0.63 无 skills 机制) | 不支持 SKILL.md;改走 `AGENTS.md`/MCP/plugin 适配 | `AGENTS.md` |
 
-> **一次装、三家通用**:`~/.agents/skills/` 是 **Codex / Gemini / Copilot 共享的跨运行时路径**。把 7 个文件夹放这一处,这三家都能发现(Gemini 里 `~/.agents/skills/` 优先于 `~/.gemini/skills/`)。Claude Code 单独用 `.claude/skills/`。
+> **共享路径**:`~/.agents/skills/` 据文档是 Codex/Gemini 等的跨运行时共享路径;但本次实测用的是各 harness 自己的 `~/.<harness>/skills/`(`~/.codex/skills/`、`~/.gemini/skills/`、`~/.zcode/skills/`,均有效)。Claude Code 用 `.claude/skills/`。**Copilot 1.0.63 无 skills 机制,不适用**(见上「实测状态」)。
 > 无论装哪,**7 个文件夹(`aigd` + 6 个 `aigd-*`)必须平级**——子 skill 靠同级 `aigd/` 取 references,缺了或层级错就断链。
 
 ---
