@@ -1,0 +1,27 @@
+name: tests
+
+# AIGD 校验器/工具脚本测试。纯 stdlib runner(非 pytest):每个 test 文件
+# if __name__=="__main__" 跑全部 test_*,按失败数设退出码。
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install optional deps (openpyxl/Pillow)
+        run: pip install -r aigd/references/scripts/requirements.txt
+      - name: Run test suite
+        working-directory: aigd/references/scripts
+        run: |
+          rc=0
+          for t in tests/test_*.py; do
+            echo "== $t =="
+            python "$t" || rc=1
+          done
+          exit $rc

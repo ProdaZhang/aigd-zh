@@ -1,0 +1,15 @@
+{
+  "_about": "示例主题皮肤——按 DSL 类型上色,演示 ui_render.py --skin 的用法(ui_render.py <屏ID>.md out.html --skin <此文件>)。键=DSL 类型;@canvas 为保留键(画布底色+默认文字);变体(如 按钮·主)未列时回退基础类型(按钮)。本文件仅为示例,用户按自己美术风格/视觉规范(由项目档案『美术风格/品牌』指定)替换配色。",
+  "@canvas":  { "fill": "#faf9f5", "ink": "#141413" },
+  "背景槽":   { "fill": "#f5f0e8", "ink": "#6c6a64" },
+  "立绘槽":   { "fill": "#efe9de", "ink": "#6c6a64" },
+  "容器":     { "fill": "#f5f0e8", "ink": "#3d3d3a" },
+  "面板":     { "fill": "#efe9de", "ink": "#141413" },
+  "按钮":     { "fill": "#cc785c", "ink": "#ffffff" },
+  "按钮·次":  { "fill": "#e8e0d2", "ink": "#141413" },
+  "文本":     { "fill": "", "ink": "#3d3d3a" },
+  "图标槽":   { "fill": "#efe9de", "ink": "#cc785c" },
+  "数值条":   { "fill": "#e8e0d2", "ink": "#141413" },
+  "装饰":     { "fill": "#e8e0d2", "ink": "#8e8b82" },
+  "chrome":   { "fill": "#f5f0e8", "ink": "#3d3d3a" }
+}
