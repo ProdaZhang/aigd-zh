@@ -1,16 +1,44 @@
 # AIGD — AI 辅助游戏设计方法论（可移植 skill 包）
 
+*和一个 AI 头脑风暴做游戏设计,产出物可交给另一个 AI 直接开发落地——自带确定性校验器,交接包没过门就放不出去。*
+
 > 🌐 English version: **[ProdaZhang/aigd](https://github.com/ProdaZhang/aigd)**
 
-把**游戏系统设计**变成一份**平台无关的交接包**,让另一个 AI(或人)照着直接开发;并自带**确定性校验器**,把交接包门控到"可消费"才放行。讨论驱动、不替你拍数值、不绑定引擎。
+![AIGD:和 AI 头脑风暴做设计,产出交接包,再用确定性校验门控](docs/session.gif)
 
-> 这是仓库落地页。**完整文档** → [`aigd/README.md`](aigd/README.md);**先跑通感受一下** → [`aigd/examples/potion-crafting/`](aigd/examples/potion-crafting/)。
+**它解决什么:** 游戏设计交接最常翻车的是**文档与配置悄悄失同步**——下游各读各的、实现分叉。AIGD 把设计结构化到漂移无处可藏(规则挂编号、数值住配置、散文只引 `表[主键].字段`),并自带**确定性校验器**,把交接包门控到 *0 major* 才放行。
+
+讨论驱动 · 不替你拍数值 · 不绑定引擎。
+
+> **这是仓库落地页。** 先跑通感受一下 → [`aigd/examples/potion-crafting/`](aigd/examples/potion-crafting/);完整方法论 → [`aigd/README.md`](aigd/README.md)。
 
 ---
 
 ## 它解决什么
 
 游戏设计交接最常翻车的不是文档写得少,而是**文档与配置悄悄失同步**("文档先定、表格后改没回写"),下游各读各的 → 实现分叉。AIGD 三招挡住:结构化产出(规则挂编号 / 数值住配置 / 散文只引 `表[主键].字段`)、未定的显式挂账(`[待确认]` 交人拍板)、确定性机检(`config_check`/`value_check`/`manifest_check`,0 major 才算可交接)。
+
+## 另一个 AI 真能照着建——还过验收
+
+![下游 AI 只读交接包实现示例,5 条验收场景全过](docs/handoff.gif)
+
+<sub>↑ **真跑**:只读示例交接包从零实现,5 条验收场景全过(`5 passed, 0 failed`)。</sub>
+
+## 你产出什么——交接包(6 件套)
+
+![6 件套:规则 / 配置 / 原型 / 契约 / 验收 / 脊柱](docs/deliverables.gif)
+
+## 界面:DSL 渲染成可点原型
+
+![UI-DSL 经 ui_render 渲染成 HTML/SVG 线框](docs/dsl-render.gif)
+
+## 门控它的确定性校验器
+
+![校验器:config_check / value_check / manifest_check / ref_graph + ui_render](docs/tools.gif)
+
+![真跑:校验器抓出文档↔配置失同步、拒绝交接,改回后才放行](docs/demo.gif)
+
+<sub>↑ `config_check` **真跑**:抓出文档↔配置失同步(`UNDOC_COL`),改回后才放行。</sub>
 
 ## 装(7 个文件夹,不多不少)
 
