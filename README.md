@@ -1,5 +1,7 @@
 # AIGD — AI 辅助游戏设计方法论（可移植 skill 包）
 
+> 🌐 English version: **[ProdaZhang/aigd](https://github.com/ProdaZhang/aigd)**
+
 把**游戏系统设计**变成一份**平台无关的交接包**,让另一个 AI(或人)照着直接开发;并自带**确定性校验器**,把交接包门控到"可消费"才放行。讨论驱动、不替你拍数值、不绑定引擎。
 
 > 这是仓库落地页。**完整文档** → [`aigd/README.md`](aigd/README.md);**先跑通感受一下** → [`aigd/examples/potion-crafting/`](aigd/examples/potion-crafting/)。
