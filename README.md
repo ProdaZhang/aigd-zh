@@ -1,5 +1,7 @@
 # AIGD — AI 辅助游戏设计方法论（可移植 skill 包）
 
+[![tests](https://github.com/ProdaZhang/aigd-zh/actions/workflows/tests.yml/badge.svg)](https://github.com/ProdaZhang/aigd-zh/actions/workflows/tests.yml)
+
 *和一个 AI 头脑风暴做游戏设计,产出物可交给另一个 AI 直接开发落地——自带确定性校验器,交接包没过门就放不出去。*
 
 > 🌐 English version: **[ProdaZhang/aigd](https://github.com/ProdaZhang/aigd)**
